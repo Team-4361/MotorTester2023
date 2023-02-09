@@ -57,12 +57,12 @@ public class Robot extends TimedRobot
         SmartDashboard.putNumber("5 rev", RobotContainer.fl.getEncoder().getPosition());
         SmartDashboard.putNumber("6 rev", RobotContainer.fr.getEncoder().getPosition());
         SmartDashboard.putNumber("7 rev", RobotContainer.bl.getEncoder().getPosition());
-        SmartDashboard.putNumber("8 rev", RobotContainer.br.getEncoder().getPosition());
+        //SmartDashboard.putNumber("8 rev", RobotContainer.br.getEncoder().getPosition());
 
         SmartDashboard.putNumber("5 rpm", RobotContainer.fl.getEncoder().getVelocity());
         SmartDashboard.putNumber("6 rpm", RobotContainer.fr.getEncoder().getVelocity());
         SmartDashboard.putNumber("7 rpm", RobotContainer.bl.getEncoder().getVelocity());
-        SmartDashboard.putNumber("8 rpm", RobotContainer.br.getEncoder().getVelocity());
+        //SmartDashboard.putNumber("8 rpm", RobotContainer.br.getEncoder().getVelocity());
 
         SmartDashboard.putNumber("5 power", RobotContainer.fl.get());
         SmartDashboard.putNumber("6 power", RobotContainer.fr.get());
@@ -70,6 +70,8 @@ public class Robot extends TimedRobot
         SmartDashboard.putNumber("8 power", RobotContainer.br.get());
 
         SmartDashboard.putNumber("pid rpm", RobotContainer.pidSpeed);
+
+        SmartDashboard.putNumber("servo angle", RobotContainer.servo.getAngle());
     }
     
     

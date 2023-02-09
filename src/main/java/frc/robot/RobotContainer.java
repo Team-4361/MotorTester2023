@@ -5,6 +5,7 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -41,7 +42,11 @@ public class RobotContainer {
     public static double pidSpeed = 3000;
 
     public static PIDMotor fl, fr, bl, br;
-    public static PWM servo;
+    public static Servo servo;
+
+    public WPI_TalonSRX talon2;
+
+    //public static WPI_TalonSRX talon2;
 
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -51,13 +56,15 @@ public class RobotContainer {
         fl = new PIDMotor(5, MotorType.kBrushless);
         fr = new PIDMotor(6, MotorType.kBrushless);
         bl = new PIDMotor(7, MotorType.kBrushless);
-        br = new PIDMotor(8, MotorType.kBrushless);
-        servo = new PWM(1);
+        br = new PIDMotor(8, MotorType.kBrushed);
+        servo = new Servo(1);
+        talon2 = new WPI_TalonSRX(12);
+
+        servo.setBounds(2.43, 2.43, 1.49, 0.557, 0.557);
 
         //servo.setBounds(100, 100, 0, -100, -100);
         configureBindings();
     }
-
 
     /**
      * Use this method to define your trigger->command mappings. Triggers can be created via the
@@ -77,13 +84,14 @@ public class RobotContainer {
             fr.set(xbox.getLeftY());
             bl.set(xbox.getLeftY());
             br.set(xbox.getLeftY());
+            talon2.set(xbox.getLeftY());
         }));
 
         xbox.a().onTrue(Commands.runOnce(() -> {
             fl.getEncoder().setPosition(0);
             fr.getEncoder().setPosition(0);
             bl.getEncoder().setPosition(0);
-            br.getEncoder().setPosition(0);    
+            //br.getEncoder().setPosition(0);    
         }));
 
         xbox.povUp().onTrue(Commands.runOnce(() -> {
@@ -97,6 +105,8 @@ public class RobotContainer {
              * 
              */
         }));
+
+        SmartDashboard.putNumber("Servo Angle", 0);
         
         xbox.y().whileTrue(Commands.run(() -> {
             servo.setSpeed(xbox.getLeftY());
