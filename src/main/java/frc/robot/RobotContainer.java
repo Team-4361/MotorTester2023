@@ -41,7 +41,7 @@ public class RobotContainer {
     public static double pidSpeed = 3000;
 
     public static PIDMotor fl, fr, bl, br;
-    public static PWM servo;
+    public static Servo servo;
 
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -52,9 +52,9 @@ public class RobotContainer {
         fr = new PIDMotor(6, MotorType.kBrushless);
         bl = new PIDMotor(7, MotorType.kBrushless);
         br = new PIDMotor(8, MotorType.kBrushless);
-        servo = new PWM(1);
+        servo = new Servo(1);
 
-        //servo.setBounds(100, 100, 0, -100, -100);
+        servo.setBounds(1000, 1000, 0, -1000, -1000);
         configureBindings();
     }
 
