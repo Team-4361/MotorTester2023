@@ -54,6 +54,7 @@ public class Robot extends TimedRobot
         // block in order for anything in the Command-based framework to work.
         CommandScheduler.getInstance().run();
 
+        /* 
         SmartDashboard.putNumber("5 rev", RobotContainer.fl.getEncoder().getPosition());
         SmartDashboard.putNumber("6 rev", RobotContainer.fr.getEncoder().getPosition());
         SmartDashboard.putNumber("7 rev", RobotContainer.bl.getEncoder().getPosition());
@@ -71,6 +72,8 @@ public class Robot extends TimedRobot
 
         SmartDashboard.putNumber("pid rpm", RobotContainer.pidSpeed);
 
+        */
+    
         SmartDashboard.putNumber("servo angle", RobotContainer.servo.getAngle());
     }
     
