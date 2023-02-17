@@ -58,13 +58,17 @@ public class RobotContainer {
         
         
         xbox.x().whileTrue(Commands.runEnd(() -> {
-            Robot.wrist.setPower(xbox.getLeftY());
+            Robot.wrist.translateMotor(xbox.getLeftY());
         }, () -> {
-            Robot.wrist.setPower(0);
+            Robot.wrist.translateMotor(0);
         }));
 
         xbox.a().onTrue(Commands.runOnce(() -> {
             Robot.wrist.resetEncoder();
+        }));
+
+        xbox.y().onTrue(Commands.runOnce(() -> {
+            Robot.wrist.setAngle(180);
         }));
 
     }

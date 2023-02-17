@@ -2,32 +2,36 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
-import com.revrobotics.EncoderType;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxRelativeEncoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.util.math.GearRatio;
+import frc.robot.util.pid.SparkMaxPIDSubsystem;
 
-public class FourBarWristSubsystem extends SubsystemBase {
-    private CANSparkMax wristMotor;
-    private RelativeEncoder wristEncoder;
+import static com.revrobotics.CANSparkMaxLowLevel.MotorType.kBrushed;
+import static frc.robot.Constants.FourBarWristValues.*;
 
-    public FourBarWristSubsystem() {
-        wristMotor = new CANSparkMax(8, CANSparkMaxLowLevel.MotorType.kBrushed);
-        wristEncoder = wristMotor.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature, 8192);
+public class FourBarWristSubsystem extends SparkMaxPIDSubsystem {
+    @Override
+    public double getRotation() {
+        return GearRatio.motorRotationsToDegrees(super.getRotation(), WRIST_GEAR_RATIO);
     }
 
     @Override
-    public void periodic() {
-        SmartDashboard.putNumber("FourBar: Wrist Encoder", wristEncoder.getPosition());
-        SmartDashboard.putNumber("FourBar: Wrist RPM", wristEncoder.getVelocity());
+    public void setTarget(double degrees) {
+        super.setTarget(degrees);
     }
 
-    public void setPower(double power) {
-        wristMotor.set(power);
-    }
-
-    public void resetEncoder() {
-        wristEncoder.setPosition(0);
+    public FourBarWristSubsystem() {
+        super(
+                "FourBarWrist",
+                new CANSparkMax(WRIST_MOTOR_ID, kBrushed),
+                kBrushed,
+                0.01,
+                0,
+                0
+        );
+        setTolerance(2);
     }
 }

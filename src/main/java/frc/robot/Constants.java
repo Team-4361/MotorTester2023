@@ -19,4 +19,11 @@ public final class Constants
     {
         public static final int DRIVER_CONTROLLER_PORT = 0;
     }
+
+    public static class FourBarWristValues {
+        public static final int WRIST_MOTOR_ID = 8;
+        public static final int WRIST_ENCODER_CPR = 8192;
+        public static final int WRIST_GEAR_RATIO = 1;
+
+    }
 }
