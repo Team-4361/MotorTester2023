@@ -5,6 +5,9 @@
 
 package frc.robot;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -25,6 +28,8 @@ public class Robot extends TimedRobot {
 
     public static ClimberWristSubsystem wrist;
     public static ClimberArmSubsystem arm;
+    public static CANSparkMax pump;
+  
 
 
     /**
@@ -37,6 +42,7 @@ public class Robot extends TimedRobot {
         // autonomous chooser on the dashboard.
         wrist = new ClimberWristSubsystem();
         arm = new ClimberArmSubsystem();
+        pump = new CANSparkMax(6, MotorType.kBrushed);
         robotContainer = new RobotContainer();
     }
 

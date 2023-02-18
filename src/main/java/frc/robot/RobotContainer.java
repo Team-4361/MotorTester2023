@@ -90,6 +90,12 @@ public class RobotContainer {
             Robot.arm.getRotation().prevPresetTarget();
             Robot.wrist.prevPresetTarget();
         }));
+
+        xbox.x().whileTrue(Commands.runEnd(()->{
+            Robot.pump.set(0.5);
+        },()->{
+            Robot.pump.set(0);
+        }));
     }
 
 
