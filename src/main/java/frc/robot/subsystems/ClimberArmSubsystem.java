@@ -11,13 +11,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.util.pid.SparkMaxPIDSubsystem;
 
 import static com.revrobotics.CANSparkMaxLowLevel.MotorType.kBrushless;
-import static frc.robot.Constants.ClimberArmValues.*;
 
 public class ClimberArmSubsystem extends SubsystemBase {
     private final SparkMaxPIDSubsystem extension, rotation;
     public ClimberArmSubsystem() {
-        this.extension = new SparkMaxPIDSubsystem("Climber Extension", 10);
-        this.rotation = new SparkMaxPIDSubsystem("Climber Rotation", 18);
+        this.extension = new SparkMaxPIDSubsystem("Climber Extension", 7);
+        this.rotation = new SparkMaxPIDSubsystem("Climber Rotation", 8);
     }
 
     public SparkMaxPIDSubsystem getExtension() { return extension; }

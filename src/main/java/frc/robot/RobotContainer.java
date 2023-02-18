@@ -35,7 +35,7 @@ public class RobotContainer {
     private final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 
     // Replace with CommandPS4Controller or CommandJoystick if needed
-    private final CommandXboxController xbox = new CommandXboxController(2);
+    public static CommandXboxController xbox = new CommandXboxController(2);
 
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -68,7 +68,7 @@ public class RobotContainer {
         }));
 
         xbox.y().onTrue(Commands.runOnce(() -> {
-            Robot.wrist.setAngle(180);
+            Robot.wrist.setTarget(180);
         }));
 
     }
