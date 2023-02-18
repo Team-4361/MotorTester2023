@@ -57,8 +57,14 @@ public class RobotContainer {
         // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
         
         
-        xbox.x().whileTrue(Commands.runEnd(() -> {
-            Robot.wrist.translateMotor(xbox.getLeftY());
+        xbox.leftBumper().whileTrue(Commands.runEnd(() -> {
+            Robot.wrist.translateMotor(0.2);
+        }, () -> {
+            Robot.wrist.translateMotor(0);
+        }));
+
+        xbox.rightBumper().whileTrue(Commands.runEnd(() -> {
+            Robot.wrist.translateMotor(-0.2);
         }, () -> {
             Robot.wrist.translateMotor(0);
         }));
