@@ -23,6 +23,8 @@ import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 
+import static frc.robot.Constants.ClimberPresets.*;
+
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -77,6 +79,17 @@ public class RobotContainer {
             Robot.wrist.setTarget(180);
         }));
 
+        xbox.povUp().onTrue(Commands.runOnce(() -> {
+            Robot.arm.getExtension().nextPresetTarget();
+            Robot.arm.getRotation().nextPresetTarget();
+            Robot.wrist.nextPresetTarget();
+        }));
+
+        xbox.povDown().onTrue(Commands.runOnce(() -> {
+            Robot.arm.getExtension().prevPresetTarget();
+            Robot.arm.getRotation().prevPresetTarget();
+            Robot.wrist.prevPresetTarget();
+        }));
     }
 
 
