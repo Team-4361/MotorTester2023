@@ -57,45 +57,23 @@ public class RobotContainer {
      */
     private void configureBindings() {
         // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-        
-        
-        xbox.leftBumper().whileTrue(Commands.runEnd(() -> {
-            Robot.wrist.translateMotor(0.2);
-        }, () -> {
-            Robot.wrist.translateMotor(0);
-        }));
+        xbox.leftBumper().whileTrue(Commands.runEnd(
+                () -> Robot.wrist.translateMotor(0.2),
+                () -> Robot.wrist.translateMotor(0))
+        );
 
-        xbox.rightBumper().whileTrue(Commands.runEnd(() -> {
-            Robot.wrist.translateMotor(-0.2);
-        }, () -> {
-            Robot.wrist.translateMotor(0);
-        }));
+        xbox.rightBumper().whileTrue(Commands.runEnd(
+                () -> Robot.wrist.translateMotor(-0.2),
+                () -> Robot.wrist.translateMotor(0))
+        );
 
-        xbox.a().onTrue(Commands.runOnce(() -> {
-            Robot.wrist.resetEncoder();
-        }));
+        xbox.a().onTrue(Commands.runOnce(() -> Robot.wrist.resetEncoder()));
+        xbox.y().onTrue(Commands.runOnce(() -> Robot.wrist.setTarget(180)));
 
-        xbox.y().onTrue(Commands.runOnce(() -> {
-            Robot.wrist.setTarget(180);
-        }));
+        xbox.povUp().onTrue(Commands.runOnce(CLIMBER_PRESETS::nextPreset));
+        xbox.povDown().onTrue(Commands.runOnce(CLIMBER_PRESETS::prevPreset));
 
-        xbox.povUp().onTrue(Commands.runOnce(() -> {
-            Robot.arm.getExtension().nextPresetTarget();
-            Robot.arm.getRotation().nextPresetTarget();
-            Robot.wrist.nextPresetTarget();
-        }));
-
-        xbox.povDown().onTrue(Commands.runOnce(() -> {
-            Robot.arm.getExtension().prevPresetTarget();
-            Robot.arm.getRotation().prevPresetTarget();
-            Robot.wrist.prevPresetTarget();
-        }));
-
-        xbox.x().whileTrue(Commands.runEnd(()->{
-            Robot.pump.set(0.5);
-        },()->{
-            Robot.pump.set(0);
-        }));
+        xbox.x().whileTrue(Commands.runEnd(() -> Robot.pump.set(0.5),() -> Robot.pump.set(0)));
     }
 
 

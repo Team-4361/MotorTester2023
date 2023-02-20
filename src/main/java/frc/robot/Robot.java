@@ -11,6 +11,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.Constants.ClimberPresets;
 import frc.robot.subsystems.ClimberArmSubsystem;
 import frc.robot.subsystems.ClimberWristSubsystem;
 
@@ -61,6 +62,7 @@ public class Robot extends TimedRobot {
         // and running subsystem periodic() methods.  This must be called from the robot's periodic
         // block in order for anything in the Command-based framework to work.
         CommandScheduler.getInstance().run();
+        ClimberPresets.CLIMBER_PRESETS.updateDashboard();
     }
 
 

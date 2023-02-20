@@ -28,10 +28,15 @@ public final class Constants {
     }
 
     public static class ClimberPresets {
-        public static final PresetList<Double> EXTENSION_PRESETS = new PresetList<>(20.0, 40.0, 60.0, 80.0);
+        public static final PresetList EXTENSION_PRESETS = new PresetList(20.0, 40.0, 60.0, 80.0);
 
-        public static final PresetList<Double> ROTATION_PRESETS = new PresetList<>(30.0, 60.0, 90.0, 120.0);
-        public static final PresetList<Double> WRIST_PRESETS = new PresetList<>(0.0, 30.0, 60.0, 90.0);
+        public static final PresetList ROTATION_PRESETS = new PresetList(30.0, 60.0, 90.0, 120.0);
+        public static final PresetList WRIST_PRESETS = new PresetList(0.0, 30.0, 60.0, 90.0);
+    
+        public static final PresetGroup CLIMBER_PRESETS = new PresetGroup()
+            .addPreset("Climber Extension", EXTENSION_PRESETS)
+            .addPreset("Climber Rotation", ROTATION_PRESETS)
+            .addPreset("Climber Wrist", WRIST_PRESETS);
     }
 
 }
